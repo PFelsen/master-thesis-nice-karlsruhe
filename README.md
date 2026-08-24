@@ -55,9 +55,9 @@ The Darcy quantity-of-interest vector contains:
 
 The `Transport` class first solves the Darcy problem and then uses the resulting flux in
 
-\[
+\begin{equation*}
 \partial_t \rho+\nabla\cdot(\rho q)=0.
-\]
+\end{equation*}
 
 The concentration is discretised with upwind discontinuous Galerkin elements. Time integration is controlled by `theta`; in particular, `theta=1.0` corresponds to implicit Euler.
 
