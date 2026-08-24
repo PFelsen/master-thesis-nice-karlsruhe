@@ -3,7 +3,7 @@ ToDo
 
 ## permeability  
 The permeability/ folder provides stochastic permeability fields for the Darcy and transport problem.
-All fields inherit from ’RandomField’, which defines the common interface for sampling and setting the stochastic vector as well as evaluation and interpolation.  
+All fields inherit from ’RandomField’, which defines the common interface for sampling and setting the stochastic vector as well as evaluation and interpolation.
 
 | Class | Description |
 |---|---|
@@ -26,13 +26,7 @@ The `fem/` folder contains the finite element model problems used by the uncerta
 
 ### Darcy problem
 
-The `Darcy` class solves
-
-\[
--\nabla\cdot(K\nabla p)=f,
-\qquad
-q=-K\nabla p,
-\]
+The `Darcy` class solves $-\nabla\cdot(K\nabla p)=f,$ and $q=-K\nabla p,$
 
 on the unit square. Pressure values are prescribed at the top and bottom boundaries, while a no-flow condition is imposed on the lateral boundaries.
 
