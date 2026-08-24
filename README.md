@@ -26,7 +26,7 @@ The `fem/` folder contains the finite element model problems used by the uncerta
 
 ### Darcy problem
 
-The `Darcy` class solves $-\nabla\cdot(K\nabla p)=f,$ and $q=-K\nabla p,$
+The `Darcy` class solves $-\nabla\cdot(\kappa \nabla p)=f,$ and $q=-\kappa \nabla p,$
 
 on the unit square. Pressure values are prescribed at the top and bottom boundaries, while a no-flow condition is imposed on the lateral boundaries.
 
@@ -42,20 +42,16 @@ The Darcy quantity-of-interest vector contains:
 1. total outflow through the bottom boundary;
 2. mean flux magnitude;
 3. mean pressure in the observation box;
-4. pressure \(L^2\)-norm;
-5. flux \(L^2\)-norm.
+4. pressure $L^2$-norm;
+5. flux $L^2$-norm.
 
 ### Transport problem
 
-The `Transport` class first solves the Darcy problem and then uses the resulting flux in
-
-\begin{equation*}
-\partial_t \rho+\nabla\cdot(\rho q)=0.
-\end{equation*}
+The `Transport` class first solves the Darcy problem and then uses the resulting flux in $\partial_t \rho + \nabla\cdot(\rho q)=0.$
 
 The concentration is discretised with upwind discontinuous Galerkin elements. Time integration is controlled by `theta`; in particular, `theta=1.0` corresponds to implicit Euler.
 
-The class supports CFL estimation, optional time-step adaptation, storage of the solution history, and transport animations. Its quantity-of-interest vector contains the normalized first outflow moment, the time-averaged concentration in an observation box, and the time-integrated squared \(L^2\)-norm.
+The class supports CFL estimation, optional time-step adaptation, storage of the solution history, and transport animations. Its quantity-of-interest vector contains the normalized first outflow moment, the time-averaged concentration in an observation box, and the time-integrated squared $L^2$-norm.
 
 ### Basic usage
 
