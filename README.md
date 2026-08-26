@@ -166,3 +166,18 @@ sc_statistics = sc.solve()
 ```
 
 Both UQ methods use MPI and can be executed in parallel.
+
+
+## Tested environment
+
+- OS: Ubuntu 24.04.4 LTS (Noble Numbat), Linux x86-64
+- Conda: 26.3.2
+- Python: 3.10.20
+- Tasmanian: 8.2
+- FEniCS: 2019.1.0
+- NumPy: 2.2.6
+- SciPy: 1.15.2
+- Open MPI: 5.0.10
+- mpi4py: 4.1.2
+- PETSc / petsc4py: 3.25.1
+- SLEPc / slepc4py: 3.25.1
