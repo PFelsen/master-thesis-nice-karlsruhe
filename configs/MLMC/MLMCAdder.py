@@ -19,9 +19,9 @@ from permeability.randomShapeField import RandomShapeField
 # MPI and output
 # ==========================
 
-comm = MPI.COMM_WORLD
-rank = comm.Get_rank()
-size = comm.Get_size()
+comm = MPI.COMM_WORLD # Global MPI communicator containing every process started with mpirun
+rank = comm.Get_rank() # MPI rank of the current process
+size = comm.Get_size() # Total number of MPI processes
 
 script_folder = Path(__file__).resolve().parent
 output_folder = script_folder / "pklData"
@@ -32,9 +32,9 @@ output_file = output_folder / "mlmc_verification.pkl"
 # MLMC settings
 # ==========================
 
-SAMPLES_PER_CONFIGURATION = 1000
+SAMPLES_PER_CONFIGURATION = 1000 # Number of samples wanted for each configuration
 
-theta = 1.0
+theta = 1.0 # Implicit Euler
 T = 0.5
 
 degrees = [0, 1]
@@ -55,6 +55,9 @@ qoi_names = [
 
 levels = [3, 4, 5, 6, 7, 8]
 
+
+# Cartesian product of permeability-field types and transport degrees.
+# This creates: 5 field types × 2 degrees = 10 configurations.
 configurations = [
     (field_type, degree)
     for field_type in field_types
@@ -223,7 +226,7 @@ def make_result_row(
     fine,
     coarse,
 ):
-    if coarse is None:
+    if coarse is None: # There is no lower discretization below the first MLMC level
         coarse_qoi = np.zeros_like(fine["qoi"])
         delta_qoi = fine["qoi"]
 
@@ -312,7 +315,7 @@ def make_result_row(
 
 def progress_bar(completed, total, width=32):
     fraction = min(max(completed / total, 0.0), 1.0)
-    filled = int(round(width * fraction))
+    filled = int(round(width * fraction)) # Convert the fraction into a number of filled characters
     return "[" + "#" * filled + "-" * (width - filled) + "]"
 
 
@@ -349,7 +352,7 @@ else:
     fine_results = None
     total_rows = None
 
-comm.Barrier()
+comm.Barrier() # Wait until every MPI process has finished initialization
 start_time = time.perf_counter()
 completed_rows = 0
 
